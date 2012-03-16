@@ -1,4 +1,5 @@
 #*-* encoding: iso-8859-1 *-*
+from humano import Humano
 class Jogo(object):
 
     def __init__(self):
