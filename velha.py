@@ -3,6 +3,7 @@
 from humano import Humano
 from robofacil import RoboFacil
 from robomedio import RoboMedio
+from robodificil import RoboDificil
 
 class Jogo(object):
 
@@ -54,13 +55,15 @@ class Jogo(object):
         for pos in self.movimentos_disponiveis():
             self.marcar( marca, pos)
             if self.terminou():
-               self.tabuleiro[pos] = '-'
-               self.jogadas.pop()
+               self.reverter()
                return pos
             else:
-                self.tabuleiro[pos] = '-'
-                self.jogadas.pop()
+               self.reverter()
         return False
+
+    def reverter(self):
+        self.tabuleiro[self.jogadas.pop()] = '-'
+        self.vencedor = None
 
 
     def terminou(self):
@@ -108,7 +111,7 @@ class Jogo(object):
 
 if __name__ == '__main__':
     jogo=Jogo()     
-    jogador2 = RoboFacil(u"Henrique", "X")
-    jogador1 = RoboMedio(u"João", "O")
+    jogador1 = RoboDificil(u"Guilherme", "X")
+    jogador2 = RoboMedio(u"João", "O")
     
     jogo.jogar( jogador2, jogador1)
